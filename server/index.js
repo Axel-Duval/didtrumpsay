@@ -34,7 +34,7 @@ app.use((req,res,next) => {
 
 //Routing
 const versionOne = require('./v1/index')
-app.use('/api/v1/questions', versionOne)
+app.use('/api/v1', versionOne)
 
 //Manage errors
 app.use((req,res,next) => {
