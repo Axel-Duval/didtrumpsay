@@ -4,7 +4,7 @@
   "description": "Server side of Did Trump Say quizz application",
   "main": "dist/index.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "build": "tsc"
   },
   "keywords": [
