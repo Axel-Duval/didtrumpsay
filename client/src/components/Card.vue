@@ -109,8 +109,14 @@ export default class Card extends Vue {
   &:hover {
     .text {
       transform: rotateY(20deg) skewY(-3deg);
+      -moz-transform: rotateY(20deg) skewY(-3deg);
+      -webkit-transform: rotateY(20deg) skewY(-3deg);
+      -o-transform: rotateY(20deg) skewY(-3deg);
     }
     transform: translate(-0%, -5%) rotateY(-20deg) skewY(2deg);
+    -moz-transform: translate(-0%, -5%) rotateY(-20deg) skewY(2deg);
+    -webkit-transform: translate(-0%, -5%) rotateY(-20deg) skewY(2deg);
+    -o-transform: translate(-0%, -5%) rotateY(-20deg) skewY(2deg);
   }
 }
 

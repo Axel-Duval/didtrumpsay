@@ -13,7 +13,7 @@ export default class ChangingQuotes extends Vue {
   quotes = [
     "Stop the count!",
     "I am very smart",
-    "The great wall",
+    "You're fired!",
     "Fake news",
     "I'd be dating her",
     "I am very rich",
