@@ -1,12 +1,25 @@
 <template>
   <div id="play">
-    <img id="top-border" src="../assets/top-border.svg" alt="Top right corner banner, red republican and blue democrate colors with white stars.">
-    <Loader v-bind:loading="!fetched"/>
+    <img
+      id="top-logo"
+      src="../assets/logo.png"
+      alt="Website logo, Did Trump Say is written on red republican and blue democrate background."
+    />
+    <img
+      id="top-border"
+      src="../assets/top-border.svg"
+      alt="Top right corner banner, red republican and blue democrate colors with white stars."
+    />
+    <Loader v-bind:loading="!fetched" />
     <section v-if="fetched && !responded && count > current">
-      <Card v-bind:quote="quote"/>
+      <Card v-bind:quote="quote" />
       <div class="btn-inline">
-        <button class="btn-answer btn-outlined" @click="respond(false)">{{ noButton }}</button>
-        <button class="btn-answer btn-blue" @click="respond(true)">{{ yesButton }}</button>
+        <button class="btn-answer btn-outlined" @click="respond(false)">
+          {{ noButton }}
+        </button>
+        <button class="btn-answer btn-blue" @click="respond(true)">
+          {{ yesButton }}
+        </button>
       </div>
     </section>
     <section v-else-if="fetched && responded && count > current">
@@ -15,31 +28,51 @@
       <button @click="next()">next</button>
     </section>
     <section v-else>
-      affichage du score final
-      <button @click="fetchQuestions(5)">5 more</button>
-      <button @click="fetchQuestions(10)">10 more</button>
-      <button @click="fetchQuestions(15)">15 more</button>
-      
-    {{ good }}
-    {{ bad }}
+      <img id="trump-face" src="../assets/trump-face.jpg" alt="Trump face" />
+      <h1>
+        <span class="text-red">{{ good }}</span
+        >/<span class="text-blue">{{ good + bad }}</span>
+      </h1>
+      <p>Congratulations</p>
+      <div class="tiles-wrapper">
+        <Tile
+          v-bind:title="'5'"
+          v-bind:subtitle="'more quotes'"
+          @click="fetchQuestions(5)"
+        />
+        <Tile
+          v-bind:title="'10'"
+          v-bind:subtitle="'more quotes'"
+          @click="fetchQuestions(10)"
+        />
+        <Tile
+          v-bind:title="'15'"
+          v-bind:subtitle="'more quotes'"
+          @click="fetchQuestions(15)"
+        />
+      </div>
     </section>
-    <img id="bottom-border" src="../assets/bottom-border.svg" alt="">
+    <img
+      id="bottom-border"
+      src="../assets/bottom-border.svg"
+      alt="Bottom left corner banner, red republican and blue democrate colors with white stars."
+    />
   </div>
 </template>
 
 <script lang="ts">
-
 import { Options, Vue } from "vue-class-component";
 import { getQuestions } from "../utils/requests";
 import Loader from "@/components/Loader.vue";
 import Card from "@/components/Card.vue";
+import Tile from "@/components/Tile.vue";
 
 interface ComplexAnswer {
   good: number;
   bad: number;
 }
 
-interface ComplexQuote { 
+interface ComplexQuote {
   quote: string;
   prounonced: boolean;
   sources: Array<string>;
@@ -49,7 +82,8 @@ interface ComplexQuote {
 @Options({
   components: {
     Loader,
-    Card
+    Card,
+    Tile,
   },
 })
 export default class Play extends Vue {
@@ -113,6 +147,49 @@ export default class Play extends Vue {
 </script>
 
 <style scoped lang="scss">
+#trump-face {
+  display: none;
+}
+
+.text-red {
+  color: var(--color-red);
+  font-weight: 700;
+}
+
+.text-blue {
+  color: var(--color-blue);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 3.6rem;
+  font-weight: 500;
+  padding: 1rem;
+  margin: 0;
+}
+
+p {
+  font-size: 2rem;
+  padding: 1rem;
+  margin: 0;
+}
+
+.tiles-wrapper {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+#top-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+}
+
 .btn-outlined {
   background: transparent;
   color: var(--color-red);
@@ -140,7 +217,8 @@ export default class Play extends Vue {
   gap: 20px;
 }
 
-#play img {
+#top-border,
+#bottom-border {
   width: 250px;
   position: absolute;
 }
@@ -167,11 +245,29 @@ section {
 }
 
 @media screen and (min-width: 780px) {
-  #play img {
+  #trump-face {
+    display: block;
+  border-radius: 50%;
+  width: 200px;
+  border: solid 10px var(--color-red);
+  padding: 0.6rem;
+  margin: 1rem;
+}
+
+  #top-border,
+  #bottom-border {
     width: 350px;
   }
-  .btn-outlined, .btn-blue{
-  font-size: 1.5rem;
-}
+  .btn-outlined,
+  .btn-blue {
+    font-size: 1.5rem;
+  }
+  #top-logo {
+    width: 150px;
+  }
+  .tiles-wrapper {
+    flex-direction: row;
+    gap: 30px;
+  }
 }
 </style>

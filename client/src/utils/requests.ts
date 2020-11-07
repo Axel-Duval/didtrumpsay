@@ -1,10 +1,11 @@
 import axios from "axios";
+import * as api from '@/rest-api/api';
 const burl: string = process.env.VUE_APP_API;
 /*
 export const getQuestions = (count: number) => {
-    
-    console.log(process.env.VUE_APP_API, count)
-    return axios.get(burl + '/questions',{
+    return axios({
+        method: api.endpoints.GET_RANDOM_QUOTES.method,
+        url: api.endpoints.GET_RANDOM_QUOTES.endpoint(count),
         headers: {
             'Content-Type': 'application/json'
         }
