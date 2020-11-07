@@ -1,5 +1,6 @@
 import axios from "axios";
-import * as api from '@/rest-api/api';
+import * as api from '@/api';
+
 const burl: string = process.env.VUE_APP_API;
 /*
 export const getQuestions = (count: number) => {
