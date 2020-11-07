@@ -4,7 +4,7 @@
       <section id="hero">
         <div id="hero-logo">
           <img
-            src="../assets/logo.svg"
+            src="../assets/logo.png"
             alt="Website logo, Did Trump Say is written on red republican and blue democrate background."
           />
         </div>
