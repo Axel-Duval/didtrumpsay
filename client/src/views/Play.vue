@@ -3,9 +3,11 @@
     <img id="top-border" src="../assets/top-border.svg" alt="Top right corner banner, red republican and blue democrate colors with white stars.">
     <Loader v-bind:loading="!fetched"/>
     <section v-if="fetched && !responded && count > current">
-      {{ quote }}
-      <button @click="respond(false)">{{ noButton }}</button>
-      <button @click="respond(true)">{{ yesButton }}</button>
+      <Card v-bind:quote="quote"/>
+      <div class="btn-inline">
+        <button class="btn-answer btn-outlined" @click="respond(false)">{{ noButton }}</button>
+        <button class="btn-answer btn-blue" @click="respond(true)">{{ yesButton }}</button>
+      </div>
     </section>
     <section v-else-if="fetched && responded && count > current">
       affichage de la reponse
@@ -30,6 +32,7 @@
 import { Options, Vue } from "vue-class-component";
 import { getQuestions } from "../utils/requests";
 import Loader from "@/components/Loader.vue";
+import Card from "@/components/Card.vue";
 
 interface ComplexAnswer {
   good: number;
@@ -46,6 +49,7 @@ interface ComplexQuote {
 @Options({
   components: {
     Loader,
+    Card
   },
 })
 export default class Play extends Vue {
@@ -109,6 +113,33 @@ export default class Play extends Vue {
 </script>
 
 <style scoped lang="scss">
+.btn-outlined {
+  background: transparent;
+  color: var(--color-red);
+  font-size: 1rem;
+}
+
+.btn-blue {
+  background: var(--color-blue);
+  border: solid 2px var(--color-blue);
+  font-size: 1rem;
+}
+
+.btn-blue:hover {
+  background: var(--color-blue-hover);
+  color: white;
+}
+
+.btn-answer {
+  padding: 0.6rem 1.6rem;
+}
+
+.btn-inline {
+  padding: 2rem 1rem;
+  display: flex;
+  gap: 20px;
+}
+
 #play img {
   width: 250px;
   position: absolute;
@@ -130,6 +161,7 @@ section {
   overflow-x: hidden;
   overflow-y: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -138,5 +170,8 @@ section {
   #play img {
     width: 350px;
   }
+  .btn-outlined, .btn-blue{
+  font-size: 1.5rem;
+}
 }
 </style>

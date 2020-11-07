@@ -17,7 +17,7 @@ export const getQuestions = (count: number): Promise<any> => {
         const res = {
             data: [
                 {
-                    quote: 'I luve mushrooms',
+                    quote: 'I will build a great, great wall on our southern border, and I will have Mexico pay for that wall. I will have Mexico pay for that wall.',
                     pronounced: true,
                     sources: ['https://youtube.com'],
                     answers: {

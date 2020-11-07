@@ -4,6 +4,7 @@
     --color-red: #E20A17;
     --color-green: #30B57D;
     --color-blue: #003B73;
+    --color-blue-hover:rgb(12, 71, 128);
 }
 
 /* Reset */
@@ -276,7 +277,7 @@ button,
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     background-color: var(--color-red);
     border-radius: 6px;
-    color: #ffffff !important;
+    color: #ffffff;
     border: solid 2px var(--color-red);
     cursor: pointer;
     outline:none;
@@ -293,7 +294,7 @@ input[type="button"]:hover,
 button:hover,
 .button:hover {
     background-color: transparent;
-    color: var(--color-red) !important;
+    color: var(--color-red);
 }
 
 .btn-nav{

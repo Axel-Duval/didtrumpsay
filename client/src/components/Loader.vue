@@ -28,7 +28,7 @@ export default class Loader extends Vue {
     width: 100%;
     left: 0;
     top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: white;
     z-index: 10;
     display: flex;
     flex-direction: row;
