@@ -15,6 +15,9 @@ export const getQuestions = (count: number) => {
 */
 
 export const getQuestions = (count: number): Promise<any> => {
+
+    console.log(api.endpoints.GET_RANDOM_QUOTES.endpoint);
+
     return new Promise((resolve, reject) => {
         const res = {
             data: [

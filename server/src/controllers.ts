@@ -1,5 +1,5 @@
+import * as api from '@api';
 import { QuotesService } from '@/services';
-import * as api from '@/rest-api';
 import { ControllerResponse, StatusCode, errored, ok } from '@/response';
 
 export class QuotesController {

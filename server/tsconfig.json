@@ -16,7 +16,7 @@
         "strictPropertyInitialization": true,
         "strictNullChecks": true,
         "paths": {
-            "@/rest-api": [
+            "@api": [
                 "../client/src/api/index.ts"
             ],
             "@/*": [

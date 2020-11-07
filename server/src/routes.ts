@@ -1,7 +1,7 @@
 import { Router, Response } from 'express';
 import { QuotesController } from '@/controllers';
 import { QuotesService } from '@/services';
-import * as api from '@/rest-api';
+import * as api from '@api';
 import { ControllerResponse } from './response';
 
 function handleRouteResult(res: Response, result: ControllerResponse<any>) {
