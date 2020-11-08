@@ -30,9 +30,19 @@
               v-bind:answer="question.pronounced"
       />
       <div class="btn-inline">
-        <button class="btn-answer btn-outlined">
+        <button class="btn-answer btn-outlined" v-if="question.pronounced === true" @click="toggleSources = true">
           Sources
         </button>
+        <div id="sources" v-if="toggleSources">
+          <h1>Sources</h1>
+          <ul>
+            <li v-for="source in question.sources" :key="source">
+              <a v-bind:href="source" target="_blank" rel="noopener noreferrer" v-if="source.toLowerCase().startsWith('http')">Link</a>
+              <p v-else>{{source}}</p>
+            </li>
+          </ul>
+          <button @click="toggleSources = false">Close</button>
+        </div>
         <button class="btn-answer btn-blue" @click="next()">
           Next
         </button>
@@ -91,6 +101,7 @@ import Canvas from "@/components/Canvas.vue";
   },
 })
 export default class Play extends Vue {
+  toggleSources = false;
   fetched = false;
   responded = false;
   response = false;
@@ -183,6 +194,10 @@ export default class Play extends Vue {
       });
   }
 
+  getSources() {
+    window.alert("Bonjour !");
+  }
+
   /* LIFECYCLE */
   beforeMount() {
     this.fetchQuestions(5);
@@ -191,6 +206,28 @@ export default class Play extends Vue {
 </script>
 
 <style scoped lang="scss">
+#sources {
+  position: absolute;
+  background: white;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+#sources h1 {
+  padding: 2rem;
+}
+
+#sources p {
+  padding: 2rem;
+}
+
 #trump-face {
   display: none;
 }

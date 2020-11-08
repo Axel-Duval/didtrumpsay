@@ -33,10 +33,10 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class Canvas extends Vue {
-  yesCount: number;
-  noCount: number;
-  answered: boolean;
-  answer: boolean;
+  yesCount!: number;
+  noCount!: number;
+  answered!: boolean;
+  answer!: boolean;
 
   get noStyle(): string {
     const height = (100 * this.noCount) / (this.noCount + this.yesCount);
