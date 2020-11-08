@@ -37,7 +37,7 @@
           <h1>Sources</h1>
           <ul>
             <li v-for="source in question.sources" :key="source">
-              <a v-bind:href="source" target="_blank" rel="noopener noreferrer" v-if="source.toLowerCase().startsWith('http')">Link</a>
+              <a v-bind:href="source" target="_blank" rel="noopener noreferrer" v-if="source.toLowerCase().startsWith('http')">- Link -</a>
               <p v-else>{{source}}</p>
             </li>
           </ul>
@@ -220,12 +220,24 @@ export default class Play extends Vue {
   z-index: 3;
 }
 
-#sources h1 {
+#sources h1{
   padding: 2rem;
 }
 
-#sources p {
-  padding: 2rem;
+#sources ul{
+  padding: 1rem 0.4rem;
+  padding-bottom: 4rem;
+  text-align: center;
+}
+
+#sources ul li a, #sources ul li p {
+  font-size: 1.3rem;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+#sources ul li a {
+  color: var(--color-red);
 }
 
 #trump-face {
