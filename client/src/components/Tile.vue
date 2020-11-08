@@ -17,22 +17,10 @@ import { Options, Vue } from "vue-class-component";
 export default class Tile extends Vue {
   title!: string;
   subtitle!: string;
-
-  mounted() {
-    console.log(this.title, this.subtitle);
-  }
 }
 </script>
 
 <style scoped lang="scss">
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-}
 
 .tile {
     background: white;
@@ -68,5 +56,8 @@ export default class Tile extends Vue {
     -moz-transform: translate(0%, -5%);
     -webkit-transform: translate(0%, -5%);
     -o-transform: translate(0%, -5%);
+    h2 {
+        color: var(--color-red);
+    }
 }
 </style>

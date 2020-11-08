@@ -20,22 +20,10 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class Card extends Vue {
   quote!: string;
-
-  mounted() {
-    console.log(this.quote);
-  }
 }
 </script>
 
 <style scoped lang="scss">
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-}
 
 .box {
   background-color: transparent;
@@ -71,10 +59,10 @@ export default class Card extends Vue {
     box-sizing: border-box;
   }
   .fas {
-    font-size: 25px;
-    height: 50px;
-    width: 50px;
-    line-height: 50px !important;
+    font-size: 20px;
+    height: 40px;
+    width: 40px;
+    line-height: 40px !important;
     background: var(--color-red);
     color: white;
   }
@@ -93,6 +81,7 @@ export default class Card extends Vue {
     background-color: var(--color-blue);
     border-radius: 3px;
     transition: 0.4s;
+    padding: 4rem 3rem;
     .fa1 {
       position: absolute;
       top: 0;
@@ -121,7 +110,6 @@ export default class Card extends Vue {
 }
 
 #quote {
-  padding: 2rem 5rem;
   margin: 0;
   font-size: 1.3rem;
 }
@@ -145,6 +133,19 @@ export default class Card extends Vue {
   #quote {
     padding: 2rem 8rem;
     font-size: 1.6rem;
+  }
+  .box {
+    .fas {
+      font-size: 25px;
+      height: 50px;
+      width: 50px;
+      line-height: 50px !important;
+      background: var(--color-red);
+      color: white;
+    }
+    .text {
+      padding: 4rem 1rem;
+    }
   }
 }
 </style>

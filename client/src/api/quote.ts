@@ -1,6 +1,6 @@
 export interface Quote {
     quote: string;
-    prounonced: boolean;
+    pronounced: boolean;
     answers: {
         correct: number;
         incorrect: number;

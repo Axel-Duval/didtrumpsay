@@ -4,6 +4,7 @@
       id="top-logo"
       src="../assets/logo.png"
       alt="Website logo, Did Trump Say is written on red republican and blue democrate background."
+      @click="$router.push('/')"
     />
     <img
       id="top-border"
@@ -23,9 +24,19 @@
       </div>
     </section>
     <section v-else-if="fetched && responded && count > current">
-      affichage de la reponse
-      <button>sources</button>
-      <button @click="next()">next</button>
+      <Canvas v-bind:yesCount="question.pronounced === true ? question.answers.correct : question.answers.incorrect"
+              v-bind:noCount="question.pronounced === false ? question.answers.correct : question.answers.incorrect"
+              v-bind:answered="question.pronounced === response"
+              v-bind:answer="question.pronounced"
+      />
+      <div class="btn-inline">
+        <button class="btn-answer btn-outlined">
+          Sources
+        </button>
+        <button class="btn-answer btn-blue" @click="next()">
+          Next
+        </button>
+      </div>
     </section>
     <section v-else>
       <img id="trump-face" src="../assets/trump-face.jpg" alt="Trump face" />
@@ -33,7 +44,7 @@
         <span class="text-red">{{ good }}</span
         >/<span class="text-blue">{{ good + bad }}</span>
       </h1>
-      <p>Congratulations</p>
+      <p>{{finalSentence}}</p>
       <div class="tiles-wrapper">
         <Tile
           v-bind:title="'5'"
@@ -61,45 +72,56 @@
 </template>
 
 <script lang="ts">
+import * as api from "@/api";
 import { Options, Vue } from "vue-class-component";
-import { getQuestions } from "../utils/requests";
+import { getQuestions, postAnswer} from "../utils/requests";
 import Loader from "@/components/Loader.vue";
 import Card from "@/components/Card.vue";
 import Tile from "@/components/Tile.vue";
+import Canvas from "@/components/Canvas.vue";
 
-interface ComplexAnswer {
-  good: number;
-  bad: number;
-}
 
-interface ComplexQuote {
-  quote: string;
-  prounonced: boolean;
-  sources: Array<string>;
-  answers: ComplexAnswer;
-}
 
 @Options({
   components: {
     Loader,
     Card,
     Tile,
+    Canvas
   },
 })
 export default class Play extends Vue {
   fetched = false;
   responded = false;
-  quotes?: Array<ComplexQuote>;
+  response = false;
+  quotes?: api.endpoints.GET_RANDOM_QUOTES.Response;
   count = 0;
   current = 0;
   good = 0;
   bad = 0;
-  noList = ["No he didn't", "Of course no", "Nope", "Not yet"];
-  yesList = ["Surely", "Yes he did", "Yes of course"];
+  noList = [
+    "No he didn't",
+    "Of course no",
+    "Nope",
+    "Not yet",
+    "Definitely not",
+    "Not at all",
+  ];
+  yesList = ["Surely", "Yes he did", "Of course"];
+
+
 
   /* COMPUTED */
   get quote(): string {
     return this.quotes![this.current].quote;
+  }
+
+  get question() {
+    return this.quotes![this.current]
+  }
+
+  get currentId(): string {
+    return this.quotes![this.current]._id
   }
 
   get noButton(): string {
@@ -110,20 +132,26 @@ export default class Play extends Vue {
     return this.yesList[this.current % this.yesList.length];
   }
 
+  get finalSentence(): string {
+    if(this.good >= this.bad) {
+      return ("Congratulations!")
+    }
+    return ("May be next time...")
+  }
+
   /* METHODS */
   fetchQuestions(nb: number) {
     this.fetched = false;
     getQuestions(nb)
       .then((res) => {
+        console.log(res)
         this.current = 0;
         this.count = res.data.length;
         this.quotes = res.data;
         this.fetched = true;
       })
-      .catch((err) => {
-        this.fetched = true;
-        console.log(err);
-        //this.$router.push('/')
+      .catch(() => {
+        this.$router.push('/')
       });
   }
 
@@ -132,11 +160,27 @@ export default class Play extends Vue {
     this.current += 1;
   }
 
-  respond(res: boolean) {
+  respond(response: boolean) {
+    this.response = response
+    if(this.question.pronounced === response) {
+      this.good += 1
+      response = true;
+    }
+    else {
+      this.bad += 1
+      response = false;
+    }
     this.responded = true;
-    /* Send response to server */
-    this.good += 1;
-    //this.bad +=1
+
+    /* chart */
+
+    postAnswer(this.currentId, response)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch(() => {
+        this.$router.push('/')
+      });
   }
 
   /* LIFECYCLE */
@@ -188,6 +232,7 @@ p {
   top: 0;
   left: 0;
   width: 100px;
+  cursor: pointer;
 }
 
 .btn-outlined {
@@ -212,15 +257,16 @@ p {
 }
 
 .btn-inline {
-  padding: 2rem 1rem;
+  padding: 2rem 0;
   display: flex;
-  gap: 20px;
+  gap: 30px;
 }
 
 #top-border,
 #bottom-border {
   width: 250px;
   position: absolute;
+  z-index: -2;
 }
 
 #top-border {
@@ -245,14 +291,20 @@ section {
 }
 
 @media screen and (min-width: 780px) {
+  h1 {
+  font-size: 5.6rem;
+  font-weight: 600;
+  padding: 1rem;
+}
+
   #trump-face {
     display: block;
-  border-radius: 50%;
-  width: 200px;
-  border: solid 10px var(--color-red);
-  padding: 0.6rem;
-  margin: 1rem;
-}
+    border-radius: 50%;
+    width: 200px;
+    border: solid 10px var(--color-red);
+    padding: 0.6rem;
+    margin: 1rem;
+  }
 
   #top-border,
   #bottom-border {

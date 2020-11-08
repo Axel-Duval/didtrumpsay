@@ -12,6 +12,7 @@ export default class ChangingQuotes extends Vue {
   count = 0;
   quotes = [
     "Stop the count!",
+    "Chill Greta, Chill!",
     "I am very smart",
     "You're fired!",
     "Fake news",
