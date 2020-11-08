@@ -24,28 +24,45 @@
       </div>
     </section>
     <section v-else-if="fetched && responded && count > current">
-      <Canvas v-bind:yesCount="question.pronounced === true ? question.answers.correct : question.answers.incorrect"
-              v-bind:noCount="question.pronounced === false ? question.answers.correct : question.answers.incorrect"
-              v-bind:answered="response"
-              v-bind:answer="question.pronounced"
+      <Canvas
+        v-bind:yesCount="
+          question.pronounced === true
+            ? question.answers.correct
+            : question.answers.incorrect
+        "
+        v-bind:noCount="
+          question.pronounced === false
+            ? question.answers.correct
+            : question.answers.incorrect
+        "
+        v-bind:answered="response"
+        v-bind:answer="question.pronounced"
       />
       <div class="btn-inline">
-        <button class="btn-answer btn-outlined" v-if="question.pronounced === true" @click="toggleSources = true">
+        <button
+          class="btn-answer btn-outlined"
+          v-if="question.pronounced === true"
+          @click="toggleSources = true"
+        >
           Sources
         </button>
         <div id="sources" v-if="toggleSources">
           <h1>Sources</h1>
           <ul>
             <li v-for="source in question.sources" :key="source">
-              <a v-bind:href="source" target="_blank" rel="noopener noreferrer" v-if="source.toLowerCase().startsWith('http')">- Link -</a>
-              <p v-else>{{source}}</p>
+              <a
+                v-bind:href="source"
+                target="_blank"
+                rel="noopener noreferrer"
+                v-if="source.toLowerCase().startsWith('http')"
+                >- Link -</a
+              >
+              <p v-else>{{ source }}</p>
             </li>
           </ul>
           <button @click="toggleSources = false">Close</button>
         </div>
-        <button class="btn-answer btn-blue" @click="next()">
-          Next
-        </button>
+        <button class="btn-answer btn-blue" @click="next()">Next</button>
       </div>
     </section>
     <section v-else>
@@ -54,7 +71,7 @@
         <span class="text-red">{{ good }}</span
         >/<span class="text-blue">{{ good + bad }}</span>
       </h1>
-      <p>{{finalSentence}}</p>
+      <p>{{ finalSentence }}</p>
       <div class="tiles-wrapper">
         <Tile
           v-bind:title="'5'"
@@ -72,6 +89,18 @@
           @click="fetchQuestions(15)"
         />
       </div>
+      <div class="btn-share">
+        <a
+        target="_blank"
+        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.did-trump-say.com%2F&amp;src=sdkpreparse&hashtag=%23DidTrumpSay"
+        class="fb-xfbml-parse-ignore"
+      >
+        <i class="fab fa-facebook"></i>
+      </a>
+      <a class="twitter-hashtag-button" v-bind:href="twitterHref">
+        <i class="fab fa-twitter"></i>
+      </a>
+      </div>
     </section>
     <img
       id="bottom-border"
@@ -84,20 +113,18 @@
 <script lang="ts">
 import * as api from "@/api";
 import { Options, Vue } from "vue-class-component";
-import { getQuestions, postAnswer} from "../utils/requests";
+import { getQuestions, postAnswer } from "../utils/requests";
 import Loader from "@/components/Loader.vue";
 import Card from "@/components/Card.vue";
 import Tile from "@/components/Tile.vue";
 import Canvas from "@/components/Canvas.vue";
-
-
 
 @Options({
   components: {
     Loader,
     Card,
     Tile,
-    Canvas
+    Canvas,
   },
 })
 export default class Play extends Vue {
@@ -120,19 +147,22 @@ export default class Play extends Vue {
   ];
   yesList = ["Surely", "Yes he did", "Of course"];
 
-
-
   /* COMPUTED */
+  get twitterHref(): string {
+    return `https://twitter.com/intent/tweet?text=${this.good}%2F${
+      this.good + this.bad
+    }&hashtags=DidTrumpSay`;
+  }
   get quote(): string {
     return this.quotes![this.current].quote;
   }
 
   get question() {
-    return this.quotes![this.current]
+    return this.quotes![this.current];
   }
 
   get currentId(): string {
-    return this.quotes![this.current]._id
+    return this.quotes![this.current]._id;
   }
 
   get noButton(): string {
@@ -144,10 +174,10 @@ export default class Play extends Vue {
   }
 
   get finalSentence(): string {
-    if(this.good >= this.bad) {
-      return ("Congratulations!")
+    if (this.good >= this.bad) {
+      return "Congratulations!";
     }
-    return ("May be next time...")
+    return "May be next time...";
   }
 
   /* METHODS */
@@ -155,14 +185,14 @@ export default class Play extends Vue {
     this.fetched = false;
     getQuestions(nb)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         this.current = 0;
         this.count = res.data.length;
         this.quotes = res.data;
         this.fetched = true;
       })
       .catch(() => {
-        this.$router.push('/')
+        this.$router.push("/");
       });
   }
 
@@ -172,13 +202,12 @@ export default class Play extends Vue {
   }
 
   respond(response: boolean) {
-    this.response = response
-    if(this.question.pronounced === response) {
-      this.good += 1
+    this.response = response;
+    if (this.question.pronounced === response) {
+      this.good += 1;
       response = true;
-    }
-    else {
-      this.bad += 1
+    } else {
+      this.bad += 1;
       response = false;
     }
     this.responded = true;
@@ -187,10 +216,10 @@ export default class Play extends Vue {
 
     postAnswer(this.currentId, response)
       .then((res) => {
-        console.log(res)
+        console.log(res);
       })
       .catch(() => {
-        this.$router.push('/')
+        this.$router.push("/");
       });
   }
 
@@ -206,6 +235,11 @@ export default class Play extends Vue {
 </script>
 
 <style scoped lang="scss">
+.fab {
+  padding: 2rem;
+  font-size: 1.7rem;
+  color: var(--color-blue);
+}
 #sources {
   position: absolute;
   background: white;
@@ -220,17 +254,18 @@ export default class Play extends Vue {
   z-index: 3;
 }
 
-#sources h1{
+#sources h1 {
   padding: 2rem;
 }
 
-#sources ul{
+#sources ul {
   padding: 1rem 0.4rem;
   padding-bottom: 4rem;
   text-align: center;
 }
 
-#sources ul li a, #sources ul li p {
+#sources ul li a,
+#sources ul li p {
   font-size: 1.3rem;
   font-weight: 400;
   text-decoration: none;
@@ -273,7 +308,7 @@ p {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 1rem;
 }
 
 #top-logo {
@@ -308,12 +343,16 @@ p {
 .btn-inline {
   padding: 2rem 0;
   display: flex;
-  gap: 30px;
+  gap: 1rem;
+}
+
+.btn-share {
+  display: flex;
 }
 
 #top-border,
 #bottom-border {
-  width: 250px;
+  width: 150px;
   position: absolute;
   z-index: -2;
 }
@@ -341,15 +380,16 @@ section {
 
 @media screen and (min-width: 780px) {
   h1 {
-  font-size: 5.6rem;
-  font-weight: 600;
-  padding: 1rem;
-}
+    font-size: 4.5rem;
+    font-weight: 600;
+    padding: 1rem;
+  }
 
   #trump-face {
     display: block;
     border-radius: 50%;
-    width: 200px;
+    width: 150px;
+    height: 150px;
     border: solid 10px var(--color-red);
     padding: 0.6rem;
     margin: 1rem;
@@ -357,7 +397,7 @@ section {
 
   #top-border,
   #bottom-border {
-    width: 350px;
+    width: 300px;
   }
   .btn-outlined,
   .btn-blue {
@@ -368,7 +408,7 @@ section {
   }
   .tiles-wrapper {
     flex-direction: row;
-    gap: 30px;
+    gap: 2rem;
   }
 }
 </style>

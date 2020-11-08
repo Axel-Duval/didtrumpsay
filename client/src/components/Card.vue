@@ -27,6 +27,7 @@ export default class Card extends Vue {
 
 .box {
   background-color: transparent;
+  min-height: 300px;
   border-radius: 3px;
   color: #fff;
   position: relative;
@@ -78,6 +79,9 @@ export default class Card extends Vue {
     left: -30px;    
     background-color: var(--color-blue);
     transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
     padding: 4rem 3rem;
     width: calc(100% + 60px);
     height: calc(100% - 60px);
