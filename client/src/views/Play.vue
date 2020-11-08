@@ -26,7 +26,7 @@
     <section v-else-if="fetched && responded && count > current">
       <Canvas v-bind:yesCount="question.pronounced === true ? question.answers.correct : question.answers.incorrect"
               v-bind:noCount="question.pronounced === false ? question.answers.correct : question.answers.incorrect"
-              v-bind:answered="question.pronounced === response"
+              v-bind:answered="response"
               v-bind:answer="question.pronounced"
       />
       <div class="btn-inline">

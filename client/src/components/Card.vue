@@ -75,13 +75,16 @@ export default class Card extends Vue {
   .text {
     position: relative;
     top: 30px;
-    left: -30px;
-    width: calc(100% + 60px);
-    height: calc(100% - 60px);
+    left: -30px;    
     background-color: var(--color-blue);
-    border-radius: 3px;
     transition: 0.4s;
     padding: 4rem 3rem;
+    width: calc(100% + 60px);
+    height: calc(100% - 60px);
+    width: -webkit-calc(100% + 60px);
+    height: -webkit-calc(100% - 60px);
+    width: -moz-calc(100% + 60px);
+    height: -moz-calc(100% - 60px);
     .fa1 {
       position: absolute;
       top: 0;

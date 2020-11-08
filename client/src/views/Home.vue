@@ -78,7 +78,7 @@ export default class Home extends Vue {
 <style scoped lang="scss">
 
 main {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 footer {
@@ -114,7 +114,7 @@ footer {
 }
 
 section {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
 }
 
@@ -140,6 +140,7 @@ section {
 
 #hero-quotes hr {
   border: solid 2px black;
+  background: black;
   width: 70%;
 }
 
@@ -174,13 +175,17 @@ section {
     width: 50vw;
   }
 
+  #hero div img {
+    height: 60%;
+  }
+
   #hero-quotes {
     justify-content: center;
     align-items: flex-start;
   }
 
   #hero-quotes hr {
-    width: 55%;
+    width: 80%;
   }
 
   #infos {
@@ -190,6 +195,16 @@ section {
 
   #infos h2 {
     font-size: 2.3rem;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  #hero-quotes hr {
+    width: 50%;
+  }
+
+  #hero div img {
+    height: 70%;
   }
 }
 </style>

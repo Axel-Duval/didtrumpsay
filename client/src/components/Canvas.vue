@@ -1,7 +1,7 @@
 <template>
   <div class="canvas-wrapper tile">
     <h1 v-bind:class="answered === answer ? 'good-answer' : 'wrong-answer'">
-      {{ answer === true ? "Yes" : "No" }}
+      {{ answered === answer ? "Correct" : "Incorrect" }}
     </h1>
     <p class="sub-answer">{{ answer === true ? "he did" : "he didn't" }}</p>
     <div class="data-wrapper">
@@ -9,13 +9,13 @@
         <div class="column" v-bind:style="noStyle">
           {{ noCount }}
         </div>
-        <p>No</p>
+        <p>Did not</p>
       </div>
       <div class="column-wrapper">
         <div class="column" v-bind:style="yesStyle">
           {{ yesCount }}
         </div>
-        <p>Yes</p>
+        <p>Did</p>
       </div>
     </div>
   </div>
@@ -41,15 +41,15 @@ export default class Canvas extends Vue {
   get noStyle(): string {
     const height = (100 * this.noCount) / (this.noCount + this.yesCount);
     if (this.answer === false) {
-      return `background: var(--color-blue);height: ${height}%;`;
+      return `background: var(--color-green);height: ${height}%;`;
     }
-    return `background: var(--color-red);height: ${height}%;`;
+    return `background: var(--color-blue);height: ${height}%;`;
   }
 
   get yesStyle(): string {
     const height = (100 * this.yesCount) / (this.noCount + this.yesCount);
-    if (this.answer === false) {
-      return `background: var(--color-red);height: ${height}%;`;
+    if (this.answer === true) {
+      return `background: var(--color-green);height: ${height}%;`;
     }
     return `background: var(--color-blue);height: ${height}%;`;
   }
