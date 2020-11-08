@@ -78,7 +78,7 @@ export default class Home extends Vue {
 <style scoped lang="scss">
 
 main {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 footer {
