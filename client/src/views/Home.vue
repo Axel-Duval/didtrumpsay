@@ -17,30 +17,41 @@
       <section id="infos">
         <h2>Challenge yourself on Trump quotes.</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu
-          condimentum ex, eu tempor urna. Duis tincidunt, urna eu porta iaculis,
-          orci odio luctus nisi, vitae cursus metus neque eu felis. Nam commodo
-          consequat porttitor. Maecenas volutpat erat eget nulla tempor pretium.
-          Etiam eleifend rhoncus molestie. Ut vestibulum tristique efficitur.
-          Suspendisse dignissim velit eget nulla finibus molestie. Proin auctor
-          feugiat tellus sit amet suscipit. Sed ultrices ligula vel elit posuere
-          condimentum. Phasellus eu massa enim. Duis nec nisl id arcu sagittis
-          sagittis. Fusce accumsan gravida orci, in auctor eros pretium a. Etiam
-          a est vitae lacus pulvinar dapibus in ac libero.
+          We have all wondered if <a href="https://en.wikipedia.org/wiki/Donald_Trump" target="_blank" rel="noopener noreferrer">Donald Trump</a> meant everything he said. This
+          quiz is made to aware or remind you of what Trump really said. The
+          sentences he said and tweeted during his tenure in the White House
+          have already become cult. From statements on global warming to the
+          <strong>COVID-19</strong> crisis or even the recent elections, you have probably passed
+          <a href="https://en.wikipedia.org/wiki/Donald_Trump" target="_blank" rel="noopener noreferrer">Donald Trump</a> shocking and funniest statements. In this quiz you will
+          see that this funny character has no limits.
         </p>
-        <h2>Who we are?</h2>
+        <h2>Why Trump?</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu
-          condimentum ex, eu tempor urna. Duis tincidunt, urna eu porta iaculis,
-          orci odio luctus nisi, vitae cursus metus neque eu felis. Nam commodo
-          consequat porttitor. Maecenas volutpat erat eget nulla tempor pretium.
-          Etiam eleifend rhoncus molestie. Ut vestibulum tristique efficitur.
-          Suspendisse dignissim velit eget nulla finibus molestie. Proin auctor
-          feugiat tellus sit amet suscipit. Sed ultrices ligula vel elit posuere
-          condimentum. Phasellus eu massa enim. Duis nec nisl id arcu sagittis
-          sagittis. Fusce accumsan gravida orci, in auctor eros pretium a. Etiam
-          a est <strong>vitae</strong> lacus pulvinar dapibus in ac libero.
+          Our biggest question is whether Trump is mentally disabled or ill, but
+          we try to unravel this mystery every day. Maybe he's ignorant, crazy,
+          very smart, or delusional. Maybe he fights the deep state leading
+          <strong>QAnon</strong>. Welcome to conspiracy theories. What if The Great Awakening was
+          just a premise? What about <strong>Black Lives Matters</strong> ? What about <strong>Antifa</strong> ?
+          Do you know pizzagate ? Are we Q ? Ok just kidding this is for a
+          better SEO. Or not, we don't believe in coincidences...
         </p>
+        <ul class="keywords">
+          <li>Trump</li>
+          <li><a href="https://en.wikipedia.org/wiki/Donald_Trump" target="_blank" rel="noopener noreferrer">Donald Trump</a></li>
+          <li>climate change</li>
+          <li>global warming</li>
+          <li>elections 2020</li>
+          <li>republicans</li>
+          <li>democrats</li>
+          <li>white house</li>
+          <li>deep state</li>
+          <li><a href="https://en.wikipedia.org/wiki/QAnon" target="_blank" rel="noopener noreferrer">QAnon</a></li>
+          <li>pizzagate</li>
+          <li><a href="https://en.wikipedia.org/wiki/Antifa_(États-Unis)" target="_blank" rel="noopener noreferrer">Antifa</a></li>
+          <li>Black Lives Matters</li>
+          <li>America first</li>
+          <li>lies</li>
+        </ul>
         <div>
           <button class="btn-nav" @click="scrollHome()">Back to the top</button>
         </div>
@@ -49,7 +60,9 @@
         Infos
       </button>
     </main>
-    <footer><p>&copy; 2020 DidTrumpSay | #DidTrumpSay | <i>Q</i></p></footer>
+    <footer>
+      <p>&copy; 2020 DidTrumpSay | #DidTrumpSay | <i>Q</i></p>
+    </footer>
   </div>
 </template>
 
@@ -76,7 +89,6 @@ export default class Home extends Vue {
 </script>
 
 <style scoped lang="scss">
-
 main {
   overflow: hidden;
 }
@@ -86,6 +98,23 @@ footer {
   color: white;
   padding: 2rem;
   text-align: center;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  li {
+    background: rgb(202, 202, 202);
+    border-radius: 5px;
+    padding: 0 0.4rem;
+    margin: 0.2rem 0.2rem;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 #infos {

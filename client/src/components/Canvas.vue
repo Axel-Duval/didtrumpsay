@@ -120,7 +120,7 @@ h1 {
 }
 
 .column {
-  width: 4rem;
+  width: 3.5rem;
   min-height: 1px;
   color: white;
   display: flex;
@@ -142,7 +142,7 @@ h1 {
   }
 
   .column-wrapper {
-    margin: 0 4rem;
+    margin: 0 2rem;
 
     p {
       font-size: 1.8rem;
@@ -152,7 +152,7 @@ h1 {
   }
 
   .column {
-    width: 7rem;
+    width: 5rem;
   }
 }
 </style>
