@@ -3,6 +3,7 @@ import { QuotesController } from '@/controllers';
 import { QuotesService } from '@/services';
 import * as api from '@api';
 import { ControllerResponse } from './response';
+import path from 'path';
 
 function handleRouteResult(res: Response, result: ControllerResponse<any>) {
     result.then(response => {
@@ -28,4 +29,5 @@ export function setupRoutes(router: Router, quotesService: QuotesService) {
         handleRouteResult(res, quotesController.collectAnswer(req.body || {}));
     });
 
+    router.get('/*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'dist', 'public', 'index.html')));
 }

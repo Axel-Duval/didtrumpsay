@@ -1,0 +1,23 @@
+{
+  "name": "didtrumpsay",
+  "version": "1.0.0",
+  "description": "Build file",
+  "dependencies": {
+    "tsconfig-paths": "^3.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "cd server && npm run start",
+    "heroku-postbuild": "cd client && npm i && npm run build && cd ../server && npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Axel-Duval/didtrumpsay.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Axel-Duval/didtrumpsay/issues"
+  },
+  "homepage": "https://github.com/Axel-Duval/didtrumpsay#readme"
+}
