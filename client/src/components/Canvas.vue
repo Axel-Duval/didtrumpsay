@@ -63,7 +63,7 @@ export default class Canvas extends Vue {
     widows: 100%;
 }
 h1 {
-  font-size: 3.6rem;
+  font-size: 2.5rem;
   font-weight: 500;
   padding: 1rem;
   margin: 0;
@@ -94,7 +94,7 @@ h1 {
 }
 
 .canvas-wrapper {
-  height: 250px;
+  height: 270px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,15 +130,15 @@ h1 {
 
 @media screen and (min-width: 780px) {
   h1 {
-    font-size: 5.6rem;
-    font-weight: 600;
+    font-size: 4rem;
+    font-weight: 500;
     padding: 1rem;
   }
   .sub-answer {
     font-size: 2rem;
   }
   .canvas-wrapper {
-    height: 450px;
+    height: 400px;
   }
 
   .column-wrapper {

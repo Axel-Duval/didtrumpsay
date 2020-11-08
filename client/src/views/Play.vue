@@ -235,6 +235,10 @@ export default class Play extends Vue {
 </script>
 
 <style scoped lang="scss">
+#play {
+  overflow: hidden;
+}
+
 .fab {
   padding: 2rem;
   font-size: 1.7rem;
@@ -352,7 +356,7 @@ p {
 
 #top-border,
 #bottom-border {
-  width: 150px;
+  width: 120px;
   position: absolute;
   z-index: -2;
 }
@@ -363,13 +367,14 @@ p {
 }
 
 #bottom-border {
-  bottom: 0;
+  bottom: -2px;
   left: 0;
 }
 
 section {
   width: 100vw;
   height: 100vh;
+  padding-top: 3rem;
   overflow-x: hidden;
   overflow-y: hidden;
   display: flex;
@@ -385,16 +390,6 @@ section {
     padding: 1rem;
   }
 
-  #trump-face {
-    display: block;
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    border: solid 10px var(--color-red);
-    padding: 0.6rem;
-    margin: 1rem;
-  }
-
   #top-border,
   #bottom-border {
     width: 300px;
@@ -408,7 +403,21 @@ section {
   }
   .tiles-wrapper {
     flex-direction: row;
-    gap: 2rem;
+  }
+  .tiles-wrapper *{
+    margin: 0 1rem;
+  }
+  
+}
+@media screen and (min-width: 1100px) {
+    #trump-face {
+    display: block;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: solid 10px var(--color-red);
+    padding: 0.6rem;
+    margin: 1rem;
   }
 }
 </style>

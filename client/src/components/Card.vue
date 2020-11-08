@@ -27,11 +27,12 @@ export default class Card extends Vue {
 
 .box {
   background-color: transparent;
-  min-height: 300px;
+  min-height: 240px;
   border-radius: 3px;
   color: #fff;
   position: relative;
   width: 75%;
+  height: fit-content;
   transform-style: preserve-3d;
   perspective: 2000px;
   transition: 0.4s;
@@ -82,13 +83,13 @@ export default class Card extends Vue {
     -webkit-transition: 0.4s;
     -moz-transition: 0.4s;
     -o-transition: 0.4s;
-    padding: 4rem 3rem;
-    width: calc(100% + 60px);
-    height: calc(100% - 60px);
+    padding: 2.5rem 3rem;
     width: -webkit-calc(100% + 60px);
-    height: -webkit-calc(100% - 60px);
+    height: -webkit-calc(100% - 100px);
     width: -moz-calc(100% + 60px);
     height: -moz-calc(100% - 60px);
+    width: calc(100% + 60px);
+    height: calc(100% - 60px);
     .fa1 {
       position: absolute;
       top: 0;
