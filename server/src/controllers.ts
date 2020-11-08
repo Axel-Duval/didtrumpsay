@@ -18,7 +18,7 @@ export class QuotesController {
             return errored(StatusCode.BadRequest, '"count" query argument must be lower than or equal to 100');
         }
         const quotes = await this.quotesService.getRandomQuotes(count || 1);
-        return ok(StatusCode.Ok, quotes );
+        return ok(StatusCode.Ok, quotes.map(quote => ({ ... quote, _id: quote._id.toHexString() })));
     }
 
     async collectAnswer(body: any): ControllerResponse<api.endpoints.POST_QUOTE_ANSWER.Response> {

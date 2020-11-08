@@ -1,5 +1,7 @@
+import { ObjectId } from "mongodb";
+
 export interface Quote {
-    _id: string;
+    _id: ObjectId;
     quote: string;
     pronounced: boolean;
     answers: {
