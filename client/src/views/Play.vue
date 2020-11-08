@@ -312,8 +312,11 @@ p {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
 }
+
+.tiles-wrapper *{
+    margin: 0 1rem;
+  }
 
 #top-logo {
   position: absolute;
@@ -400,12 +403,6 @@ section {
   }
   #top-logo {
     width: 150px;
-  }
-  .tiles-wrapper {
-    flex-direction: row;
-  }
-  .tiles-wrapper *{
-    margin: 0 1rem;
   }
   
 }
