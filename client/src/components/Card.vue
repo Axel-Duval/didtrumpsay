@@ -125,6 +125,7 @@ export default class Card extends Vue {
 @media screen and (min-width: 780px) {
   .box {
     width: 55%;
+    min-height: 350px;
   }
   #quote {
     padding: 2rem 2rem;
@@ -135,6 +136,7 @@ export default class Card extends Vue {
 @media screen and (min-width: 1000px) {
   .box {
     width: 40%;
+    min-height: 350px;
   }
   #quote {
     padding: 2rem 1rem;

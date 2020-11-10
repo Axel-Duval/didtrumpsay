@@ -15,6 +15,7 @@
         </div>
       </section>
       <section id="infos">
+        <h1>Did Trump Say</h1>
         <h2>Challenge yourself on Trump quotes.</h2>
         <p>
           We have all wondered if <a href="https://en.wikipedia.org/wiki/Donald_Trump" target="_blank" rel="noopener noreferrer">Donald Trump</a> meant everything he said. This

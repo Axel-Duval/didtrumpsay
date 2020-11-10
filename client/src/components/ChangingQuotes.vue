@@ -1,7 +1,7 @@
 <template>
-  <h1 class="changing-quote">
+  <p class="changing-quote">
     {{ quote }}
-  </h1>
+  </p>
 </template>
 
 <script lang="ts">

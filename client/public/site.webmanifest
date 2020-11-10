@@ -1,6 +1,7 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Did Trump ever say that?",
+    "short_name": "Did Trump Say",
+    "description": "Did really Trump say that the concept of global warming was created by and for the Chinese? Yes, of course. Want to know more? Take the test.",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -15,5 +16,6 @@
     ],
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
-    "display": "standalone"
+    "start_url": ".",
+    "display": "fullscreen"
 }
